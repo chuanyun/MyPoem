@@ -141,6 +141,41 @@ def find_cipai_desc(poem_name, cipai_desc_data):
     return None
 
 
+def set_selected_poem_idx(new_idx, poem_labels):
+    st.session_state["selected_poem_idx"] = new_idx
+    st.session_state["poem_selector"] = poem_labels[new_idx]
+
+
+def move_selected_poem(step, poem_labels):
+    current_idx = st.session_state.get("selected_poem_idx", 0)
+    new_idx = (current_idx + step) % len(poem_labels)
+    set_selected_poem_idx(new_idx, poem_labels)
+
+
+def sync_selected_poem(filtered_poems, poem_labels):
+    if "selected_poem_idx" not in st.session_state:
+        st.session_state["selected_poem_idx"] = 0
+
+    if st.session_state["selected_poem_idx"] >= len(poem_labels):
+        st.session_state["selected_poem_idx"] = 0
+
+    current_idx = st.session_state["selected_poem_idx"]
+    current_label = poem_labels[current_idx]
+
+    if st.session_state.get("poem_selector") not in poem_labels:
+        st.session_state["poem_selector"] = current_label
+
+    selected_label = st.selectbox(
+        "Title - Author",
+        options=poem_labels,
+        key="poem_selector",
+    )
+    selected_idx = poem_labels.index(selected_label)
+    if selected_idx != st.session_state["selected_poem_idx"]:
+        st.session_state["selected_poem_idx"] = selected_idx
+    return selected_idx, filtered_poems[selected_idx]
+
+
 poems = load_poems(DATA_PATH)
 authors = load_authors(AUTHORS_PATH)
 cipai_desc_data = load_cipai_desc(CIPAI_DESC_PATH)
@@ -148,28 +183,46 @@ cipai_desc_data = load_cipai_desc(CIPAI_DESC_PATH)
 st.markdown(
     """
     <style>
+        .block-container {
+            padding-top: 1.2rem;
+            padding-bottom: 2rem;
+            max-width: 900px;
+        }
         .poem-title {
-            font-size: 2.1rem;
+            font-size: 1.9rem;
             font-weight: 800;
             margin-bottom: 0.2rem;
         }
         .poem-meta {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: #1f2937;
         }
         .section-label {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
             margin-top: 0.6rem;
             margin-bottom: 0.35rem;
         }
         .poem-content {
-            font-size: 1.1rem;
-            line-height: 1.95;
+            font-size: 1.08rem;
+            line-height: 1.9;
             font-weight: 700;
             white-space: pre-wrap;
+        }
+        .filter-note {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 640px) {
+            .poem-title {
+                font-size: 1.55rem;
+            }
+            .poem-content {
+                font-size: 1rem;
+                line-height: 1.75;
+            }
         }
     </style>
     """,
@@ -178,18 +231,25 @@ st.markdown(
 
 #st.title("诗词")
 
-with st.sidebar:
-    st.subheader("Filters")
-    selected_dynasty = st.selectbox("dynasty", options=DYNasty_OPTIONS, index=0)
-    filter_mode = st.radio("Filter by", options=["Type", "Format"], index=0)
-    keyword = st.text_input("Keyword", placeholder="Search in title or content")
+with st.expander("Filters and Browse", expanded=True):
+    st.markdown("<div class='filter-note'>Designed for phone-sized screens: filters, poem picker, and navigation stay in the main page.</div>", unsafe_allow_html=True)
 
-    selected_cz_type = None
-    selected_format = None
-    if filter_mode == "Type":
-        selected_cz_type = st.selectbox("Type", options=CZ_TYPE_OPTIONS, index=0)
-    else:
-        selected_format = st.selectbox("Format", options=FORMAT_OPTIONS, index=0)
+    top_left, top_right = st.columns(2)
+    with top_left:
+        selected_dynasty = st.selectbox("Dynasty", options=DYNasty_OPTIONS, index=0)
+    with top_right:
+        filter_mode = st.radio("Filter by", options=["Type", "Format"], index=0, horizontal=True)
+
+    mid_left, mid_right = st.columns(2)
+    with mid_left:
+        if filter_mode == "Type":
+            selected_cz_type = st.selectbox("Type", options=CZ_TYPE_OPTIONS, index=0)
+            selected_format = None
+        else:
+            selected_format = st.selectbox("Format", options=FORMAT_OPTIONS, index=0)
+            selected_cz_type = None
+    with mid_right:
+        keyword = st.text_input("Keyword", placeholder="Search in title or content")
 
     filtered_poems = [
         p
@@ -203,9 +263,6 @@ with st.sidebar:
         and keyword_match(p, keyword)
     ]
 
-    st.markdown("---")
-    st.subheader("Poems")
-
     if not filtered_poems:
         st.warning("No poems match the selected filters.")
         st.stop()
@@ -215,26 +272,28 @@ with st.sidebar:
         for p in filtered_poems
     ]
 
-    if "selected_poem_idx" not in st.session_state:
-        st.session_state["selected_poem_idx"] = 0
+    selected_idx, selected_poem = sync_selected_poem(filtered_poems, poem_labels)
 
-    if st.session_state["selected_poem_idx"] >= len(poem_labels):
-        st.session_state["selected_poem_idx"] = 0
+    prev_col, next_col = st.columns(2)
+    with prev_col:
+        st.button(
+            "Previous",
+            use_container_width=True,
+            on_click=move_selected_poem,
+            args=(-1, poem_labels),
+        )
+    with next_col:
+        st.button(
+            "Next",
+            use_container_width=True,
+            on_click=move_selected_poem,
+            args=(1, poem_labels),
+        )
 
-    selected_label = st.selectbox(
-        "Title - Author",
-        options=poem_labels,
-        index=st.session_state["selected_poem_idx"],
-        key="poem_selector",
-    )
-    selected_idx = poem_labels.index(selected_label)
-    st.session_state["selected_poem_idx"] = selected_idx
-    selected_poem = filtered_poems[selected_idx]
-
-    st.markdown("---")
     if filter_mode == "Type" and selected_cz_type == "词牌":
         selected_cipai_item = find_cipai_desc(selected_poem.get("name", ""), cipai_desc_data)
         selected_cipai_name = extract_cipai_name(selected_poem.get("name", ""))
+        st.markdown("---")
         st.subheader("词牌")
         if selected_cipai_name:
             st.markdown(f"**{selected_cipai_name}**")
@@ -279,7 +338,6 @@ if appreciation_text:
     with st.expander("appreciation (hide/show)", expanded=False):
         st.markdown(appreciation_text)
 
-#st.markdown("---")
 st.markdown("<div class='section-label'>Author</div>", unsafe_allow_html=True)
 if author_intro:
     if author_lifetime:
@@ -294,20 +352,3 @@ if author_intro:
         st.info("No describe information found.")
 else:
     st.info("No author introduction found for this author.")
-
-
-st.markdown("---")
-prev_col, nav_spacer, next_col = st.columns([2, 6, 2])
-with prev_col:
-    prev_clicked = st.button("Previous", use_container_width=True)
-with next_col:
-    next_clicked = st.button("Next", use_container_width=True)
-
-if prev_clicked or next_clicked:
-    if prev_clicked:
-        new_idx = (selected_idx - 1) % len(filtered_poems)
-    else:
-        new_idx = (selected_idx + 1) % len(filtered_poems)
-
-    st.session_state["selected_poem_idx"] = new_idx
-    st.rerun()
