@@ -1,6 +1,6 @@
 # MyPoemApp
 
-A small Streamlit app for browsing Tang poems from `peoms1_tang.json`.
+A small Streamlit app for browsing Tang poems from `peoms1_tang_song.json`.
 
 ## Requirements
 
