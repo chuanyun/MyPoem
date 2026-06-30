@@ -232,7 +232,7 @@ st.markdown(
 #st.title("诗词")
 
 with st.expander("Filters and Browse", expanded=True):
-    #st.markdown("<div class='filter-note'>Designed for phone-sized screens: filters, poem picker, and navigation stay in the main page.</div>", unsafe_allow_html=True)
+    st.markdown("<div class='filter-note'>选择类别或是输入关键词</div>", unsafe_allow_html=True)
 
     top_left, top_right = st.columns(2)
     with top_left:
