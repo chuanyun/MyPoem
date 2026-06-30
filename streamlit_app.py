@@ -3,7 +3,7 @@ from pathlib import Path
 
 import streamlit as st
 
-st.set_page_config(page_title="My Peoms", layout="wide")
+st.set_page_config(page_title="诗词", page_icon="🌟", layout="wide")
 
 DATA_PATH = Path(__file__).resolve().parent / "peoms1_tang_song.json"
 AUTHORS_PATH = Path(__file__).resolve().parent / "peoms_authors_tang_song.json"
@@ -176,7 +176,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("诗词")
+#st.title("诗词")
 
 with st.sidebar:
     st.subheader("Filters")
