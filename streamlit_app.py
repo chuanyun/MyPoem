@@ -321,7 +321,7 @@ author_describe = describe_to_text(author_intro.get("describe", "")) if author_i
 st.markdown(f"<div class='poem-title'>{name}</div>", unsafe_allow_html=True)
 st.markdown(f"<div class='poem-meta'>[{dynasty}] {author}</div>", unsafe_allow_html=True)
 
-st.markdown("<div class='section-label'>content</div>", unsafe_allow_html=True)
+#st.markdown("<div class='section-label'>content</div>", unsafe_allow_html=True)
 st.markdown(f"<div class='poem-content'>{content}</div>", unsafe_allow_html=True)
 
 st.markdown("---")
