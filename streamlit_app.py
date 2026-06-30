@@ -230,7 +230,7 @@ st.markdown(
 )
 
 #st.title("诗词")
-
+st.markdown("---")
 with st.expander("Filters and Browse", expanded=True):
     st.markdown("<div class='filter-note'>选择类别或是输入关键词</div>", unsafe_allow_html=True)
 
