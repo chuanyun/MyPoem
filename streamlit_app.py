@@ -116,7 +116,7 @@ def extract_cipai_name(poem_name):
     if not name:
         return ""
 
-    for sep in ["·", "（", "(", "-", "——"]:
+    for sep in ["·", "（", "(", "-", "——"," "]:
         if sep in name:
             name = name.split(sep, 1)[0].strip()
             break
