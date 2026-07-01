@@ -116,7 +116,7 @@ def extract_cipai_name(poem_name):
     if not name:
         return ""
 
-    for sep in ["·", "（", "(", "-", "——"," "]:
+    for sep in ["·", "（", "(", "-", "——"]:
         if sep in name:
             name = name.split(sep, 1)[0].strip()
             break
@@ -206,9 +206,15 @@ st.markdown(
             margin-bottom: 0.35rem;
         }
         .poem-content {
-            font-size: 1.08rem;
+            font-size: 1.18rem;
             line-height: 1.9;
             font-weight: 700;
+            white-space: pre-wrap;
+        }
+        .section-body {
+            font-size: 1.08rem;
+            line-height: 1.9;
+            font-weight: 400;
             white-space: pre-wrap;
         }
         .filter-note {
@@ -223,6 +229,10 @@ st.markdown(
                 font-size: 1rem;
                 line-height: 1.75;
             }
+            .section-body {
+                font-size: 1rem;
+                line-height: 1.75;
+            }
         }
     </style>
     """,
@@ -232,7 +242,7 @@ st.markdown(
 #st.title("诗词")
 st.markdown("---")
 with st.expander("Filters and Browse", expanded=True):
-    st.markdown("<div class='filter-note'>选择类别或是输入关键词</div>", unsafe_allow_html=True)
+    st.markdown("<div class='filter-note'>Designed for phone-sized screens: filters, poem picker, and navigation stay in the main page.</div>", unsafe_allow_html=True)
 
     top_left, top_right = st.columns(2)
     with top_left:
@@ -328,26 +338,26 @@ st.markdown("---")
 
 if translate_text:
     st.markdown("<div class='section-label'>translate</div>", unsafe_allow_html=True)
-    st.markdown(translate_text)
+    st.markdown(f"<div class='section-body'>{translate_text}</div>", unsafe_allow_html=True)
 
 if notes_text:
     st.markdown("<div class='section-label'>notes</div>", unsafe_allow_html=True)
-    st.markdown(notes_text)
+    st.markdown(f"<div class='section-body'>{notes_text}</div>", unsafe_allow_html=True)
 
 if appreciation_text:
     with st.expander("appreciation (hide/show)", expanded=False):
-        st.markdown(appreciation_text)
+        st.markdown(f"<div class='section-body'>{appreciation_text}</div>", unsafe_allow_html=True)
 
 st.markdown("<div class='section-label'>Author</div>", unsafe_allow_html=True)
 if author_intro:
     if author_lifetime:
-        st.markdown(author_lifetime)
+        st.markdown(f"<div class='section-body'>{author_lifetime}</div>", unsafe_allow_html=True)
     else:
         st.info("No lifetime information found.")
 
     if author_describe:
         with st.expander("describe (hide/show)", expanded=False):
-            st.markdown(author_describe)
+            st.markdown(f"<div class='section-body'>{author_describe}</div>", unsafe_allow_html=True)
     else:
         st.info("No describe information found.")
 else:
