@@ -171,7 +171,7 @@ def sync_selected_poem(filtered_poems, poem_labels):
         st.session_state["poem_selector"] = current_label
 
     selected_label = st.selectbox(
-        "Title - Author",
+        "标题 - 作者",
         options=poem_labels,
         key="poem_selector",
     )
@@ -407,20 +407,20 @@ with st.expander("Filters and Browse", expanded=True):
 
     top_left, top_right = st.columns(2)
     with top_left:
-        selected_dynasty = st.selectbox("Dynasty", options=DYNasty_OPTIONS, index=0)
+        selected_dynasty = st.selectbox("朝代", options=DYNasty_OPTIONS, index=0)
     with top_right:
         filter_mode = st.radio("Filter by", options=["Type", "Format"], index=0, horizontal=True)
 
     mid_left, mid_right = st.columns(2)
     with mid_left:
         if filter_mode == "Type":
-            selected_cz_type = st.selectbox("Type", options=CZ_TYPE_OPTIONS, index=0)
+            selected_cz_type = st.selectbox("类型", options=CZ_TYPE_OPTIONS, index=0)
             selected_format = None
         else:
-            selected_format = st.selectbox("Format", options=FORMAT_OPTIONS, index=0)
+            selected_format = st.selectbox("格式", options=FORMAT_OPTIONS, index=0)
             selected_cz_type = None
     with mid_right:
-        keyword = st.text_input("Keyword", placeholder="Search in title or content")
+        keyword = st.text_input("关键词", placeholder="Search in title or content")
 
     filtered_poems = [
         p
@@ -517,18 +517,18 @@ with st.expander("Read Aloud", expanded=False):
 st.markdown("---")
 
 if translate_text:
-    st.markdown("<div class='section-label'>translate</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-label'>译文</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='section-body'>{translate_text}</div>", unsafe_allow_html=True)
 
 if notes_text:
-    st.markdown("<div class='section-label'>notes</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-label'>注释</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='section-body'>{notes_text}</div>", unsafe_allow_html=True)
 
 if appreciation_text:
     with st.expander("appreciation (hide/show)", expanded=False):
         st.markdown(f"<div class='section-body'>{appreciation_text}</div>", unsafe_allow_html=True)
 
-st.markdown("<div class='section-label'>Author</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-label'>作者</div>", unsafe_allow_html=True)
 if author_intro:
     if author_lifetime:
         st.markdown(f"<div class='section-body'>{author_lifetime}</div>", unsafe_allow_html=True)
@@ -536,7 +536,7 @@ if author_intro:
         st.info("No lifetime information found.")
 
     if author_describe:
-        with st.expander("describe (hide/show)", expanded=False):
+        with st.expander("作者介绍", expanded=False):
             st.markdown(f"<div class='section-body'>{author_describe}</div>", unsafe_allow_html=True)
     else:
         st.info("No describe information found.")
