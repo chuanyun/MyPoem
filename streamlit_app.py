@@ -1,9 +1,14 @@
 import json
+import hashlib
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="诗词", page_icon="🌟", layout="wide")
+
+if "active_page" not in st.session_state:
+    st.session_state["active_page"] = "诗词"
 
 DATA_PATH = Path(__file__).resolve().parent / "peoms1_tang_song.json"
 AUTHORS_PATH = Path(__file__).resolve().parent / "peoms_authors_tang_song.json"
@@ -176,6 +181,133 @@ def sync_selected_poem(filtered_poems, poem_labels):
     return selected_idx, filtered_poems[selected_idx]
 
 
+def build_read_aloud_text(
+    name,
+    dynasty,
+    author,
+    content,
+    translate_text,
+    notes_text,
+    author_lifetime,
+    author_describe,
+    include_translate,
+    include_notes,
+    include_author_intro,
+):
+    parts = []
+
+    header = "，".join([item for item in [name, dynasty, author] if item])
+    if header:
+        parts.append(header)
+
+    if content:
+        parts.append(content)
+
+    if include_translate and translate_text:
+        parts.append("译文")
+        parts.append(translate_text)
+
+    if include_notes and notes_text:
+        parts.append("注释")
+        parts.append(notes_text)
+
+    if include_author_intro and (author_lifetime or author_describe):
+        parts.append("作者简介")
+        if author_lifetime:
+            parts.append(author_lifetime)
+        #if author_describe:
+        #    parts.append(author_describe)
+
+    return "\n\n".join(parts).strip()
+
+
+def render_read_aloud_controls(text_to_read):
+        text_payload = json.dumps(text_to_read)
+        block_id = "tts_" + hashlib.md5(text_to_read.encode("utf-8")).hexdigest()[:10]
+
+        components.html(
+                f"""
+                <div style="padding: 8px 0 2px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+                        <button id="{block_id}_speak" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #111827; color: #ffffff;">Play</button>
+                        <button id="{block_id}_pause" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">Pause</button>
+                        <button id="{block_id}_resume" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">Resume</button>
+                        <button id="{block_id}_stop" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">Stop</button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 8px; color: #374151; font-size: 14px;">
+                        <label for="{block_id}_rate">Speed</label>
+                        <input id="{block_id}_rate" type="range" min="0.7" max="1.3" step="0.05" value="1" style="width: 170px;" />
+                        <span id="{block_id}_rate_value">1.00x</span>
+                    </div>
+
+                    <div id="{block_id}_status" style="margin-top: 8px; color: #4b5563; font-size: 13px;">Ready</div>
+                </div>
+
+                <script>
+                    (() => {{
+                        const text = {text_payload};
+                        const synth = window.speechSynthesis;
+
+                        const speakBtn = document.getElementById("{block_id}_speak");
+                        const pauseBtn = document.getElementById("{block_id}_pause");
+                        const resumeBtn = document.getElementById("{block_id}_resume");
+                        const stopBtn = document.getElementById("{block_id}_stop");
+                        const rateInput = document.getElementById("{block_id}_rate");
+                        const rateValue = document.getElementById("{block_id}_rate_value");
+                        const statusNode = document.getElementById("{block_id}_status");
+
+                        function setStatus(msg) {{
+                            statusNode.textContent = msg;
+                        }}
+
+                        function pickVoice() {{
+                            const voices = synth.getVoices() || [];
+                            const exact = voices.find(v => v.lang === "zh-CN");
+                            if (exact) return exact;
+                            const zh = voices.find(v => (v.lang || "").toLowerCase().startsWith("zh"));
+                            return zh || null;
+                        }}
+
+                        function speak() {{
+                            if (!text || !text.trim()) {{
+                                setStatus("No text to read.");
+                                return;
+                            }}
+
+                            synth.cancel();
+                            const utter = new SpeechSynthesisUtterance(text);
+                            utter.lang = "zh-CN";
+                            utter.rate = parseFloat(rateInput.value || "1");
+
+                            const voice = pickVoice();
+                            if (voice) utter.voice = voice;
+
+                            utter.onstart = () => setStatus("Reading...");
+                            utter.onend = () => setStatus("Finished");
+                            utter.onerror = () => setStatus("Read failed in this browser.");
+
+                            synth.speak(utter);
+                        }}
+
+                        speakBtn.addEventListener("click", speak);
+                        pauseBtn.addEventListener("click", () => {{ synth.pause(); setStatus("Paused"); }});
+                        resumeBtn.addEventListener("click", () => {{ synth.resume(); setStatus("Reading..."); }});
+                        stopBtn.addEventListener("click", () => {{ synth.cancel(); setStatus("Stopped"); }});
+                        rateInput.addEventListener("input", () => {{
+                            rateValue.textContent = `${{parseFloat(rateInput.value).toFixed(2)}}x`;
+                        }});
+
+                        if (typeof synth.onvoiceschanged !== "undefined") {{
+                            synth.onvoiceschanged = () => {{}};
+                        }}
+                    }})();
+                </script>
+                """,
+                height=165,
+        )
+
+
 poems = load_poems(DATA_PATH)
 authors = load_authors(AUTHORS_PATH)
 cipai_desc_data = load_cipai_desc(CIPAI_DESC_PATH)
@@ -184,7 +316,7 @@ st.markdown(
     """
     <style>
         .block-container {
-            padding-top: 1.2rem;
+            padding-top: calc(3rem + env(safe-area-inset-top, 0px));
             padding-bottom: 2rem;
             max-width: 900px;
         }
@@ -222,6 +354,9 @@ st.markdown(
             font-size: 0.95rem;
         }
         @media (max-width: 640px) {
+            .block-container {
+                padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+            }
             .poem-title {
                 font-size: 1.55rem;
             }
@@ -239,8 +374,34 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-#st.title("诗词")
-st.markdown("---")
+def render_top_nav():
+    nav_left, nav_right = st.columns(2)
+    with nav_left:
+        if st.button("诗词", use_container_width=True):
+            st.session_state["active_page"] = "诗词"
+            st.rerun()
+    with nav_right:
+        if st.button("Podcasts", use_container_width=True):
+            st.session_state["active_page"] = "Podcasts"
+            st.rerun()
+
+if st.session_state["active_page"] == "Podcasts":
+    st.title("AI Podcasts")
+    render_top_nav()
+    st.markdown("---")
+    st.write("Podcast content page")
+    st.info("Eps 1: LLM Wiki - Building Smarter Knowledge Bases with LLMs. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.info("Eps 2: Deep Agents – The Ultimate Agent Harness for Long-Horizon Tasks. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.info("Eps 3: Software Symposium: Exploring Collaboration, Innovation, and Practical Learning. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.info("Eps 4: Inside AI's Mind: Anthropic’s paper on exploring the Hidden Workspace of Language Models. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.info("Eps 5: Super Agents in Enterprise AI: Lessons and Future Directions. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.info("Eps 6: Human-as-Humanoid — Teaching Robots with Human Videos. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.info("Eps 7: GPT-Live: OpenAI’s Leap to Human-Like Conversations. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.stop()
+
+st.title("诗词&AI Notes")
+render_top_nav()
+#st.markdown("---")
 with st.expander("Filters and Browse", expanded=True):
     st.markdown("<div class='filter-note'>Designed for phone-sized screens: filters, poem picker, and navigation stay in the main page.</div>", unsafe_allow_html=True)
 
@@ -333,6 +494,25 @@ st.markdown(f"<div class='poem-meta'>[{dynasty}] {author}</div>", unsafe_allow_h
 
 #st.markdown("<div class='section-label'>content</div>", unsafe_allow_html=True)
 st.markdown(f"<div class='poem-content'>{content}</div>", unsafe_allow_html=True)
+
+with st.expander("Read Aloud", expanded=False):
+    include_translate_audio = st.checkbox("Include translate", value=False)
+    include_notes_audio = st.checkbox("Include notes", value=False)
+    include_author_audio = st.checkbox("Include author", value=True)
+    text_to_read = build_read_aloud_text(
+        name=name,
+        dynasty=dynasty,
+        author=author,
+        content=content,
+        translate_text=translate_text,
+        notes_text=notes_text,
+        author_lifetime=author_lifetime,
+        author_describe=author_describe,
+        include_translate=include_translate_audio,
+        include_notes=include_notes_audio,
+        include_author_intro=include_author_audio,
+    )
+    render_read_aloud_controls(text_to_read)
 
 st.markdown("---")
 
