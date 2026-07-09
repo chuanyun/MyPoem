@@ -381,7 +381,7 @@ def render_top_nav():
             st.session_state["active_page"] = "诗词"
             st.rerun()
     with nav_right:
-        if st.button("Podcasts", use_container_width=True):
+        if st.button("AI Podcasts", use_container_width=True):
             st.session_state["active_page"] = "Podcasts"
             st.rerun()
 
@@ -399,7 +399,7 @@ if st.session_state["active_page"] == "Podcasts":
     st.info("Eps 7: GPT-Live: OpenAI’s Leap to Human-Like Conversations. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
     st.stop()
 
-st.title("诗词&AI Notes")
+st.title("诗词")
 render_top_nav()
 #st.markdown("---")
 with st.expander("Filters and Browse", expanded=True):
