@@ -229,15 +229,15 @@ def render_read_aloud_controls(text_to_read):
                 f"""
                 <div style="padding: 8px 0 2px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
-                        <button id="{block_id}_speak" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #111827; color: #ffffff;">Play</button>
-                        <button id="{block_id}_pause" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">Pause</button>
-                        <button id="{block_id}_resume" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">Resume</button>
-                        <button id="{block_id}_stop" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">Stop</button>
+                        <button id="{block_id}_speak" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #111827; color: #ffffff;">▶️</button>
+                        <button id="{block_id}_pause" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">⏸️</button>
+                        <button id="{block_id}_resume" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">⏯️</button>
+                        <button id="{block_id}_stop" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: #ffffff; color: #111827;">⏹️</button>
                     </div>
 
                     <div style="display: flex; align-items: center; gap: 8px; color: #374151; font-size: 14px;">
                         <label for="{block_id}_rate">Speed</label>
-                        <input id="{block_id}_rate" type="range" min="0.7" max="1.3" step="0.05" value="1" style="width: 170px;" />
+                        <input id="{block_id}_rate" type="range" min="0.3" max="1.3" step="0.05" value="1" style="width: 170px;" />
                         <span id="{block_id}_rate_value">1.00x</span>
                     </div>
 
@@ -381,7 +381,7 @@ def render_top_nav():
             st.session_state["active_page"] = "诗词"
             st.rerun()
     with nav_right:
-        if st.button("AI Podcasts", use_container_width=True):
+        if st.button("AI 博客", use_container_width=True):
             st.session_state["active_page"] = "Podcasts"
             st.rerun()
 
@@ -409,11 +409,11 @@ with st.expander("Filters and Browse", expanded=True):
     with top_left:
         selected_dynasty = st.selectbox("朝代", options=DYNasty_OPTIONS, index=0)
     with top_right:
-        filter_mode = st.radio("Filter by", options=["Type", "Format"], index=0, horizontal=True)
+        filter_mode = st.radio("筛选", options=["类型", "格式"], index=0, horizontal=True)
 
     mid_left, mid_right = st.columns(2)
     with mid_left:
-        if filter_mode == "Type":
+        if filter_mode == "类型":
             selected_cz_type = st.selectbox("类型", options=CZ_TYPE_OPTIONS, index=0)
             selected_format = None
         else:
@@ -428,7 +428,7 @@ with st.expander("Filters and Browse", expanded=True):
         if str(p.get("dynasty", "")).strip() == selected_dynasty
         and (
             cz_type_match(p, selected_cz_type)
-            if filter_mode == "Type"
+            if filter_mode == "类型"
             else str(p.get("format", "")).strip() == selected_format
         )
         and keyword_match(p, keyword)
@@ -495,10 +495,10 @@ st.markdown(f"<div class='poem-meta'>[{dynasty}] {author}</div>", unsafe_allow_h
 #st.markdown("<div class='section-label'>content</div>", unsafe_allow_html=True)
 st.markdown(f"<div class='poem-content'>{content}</div>", unsafe_allow_html=True)
 
-with st.expander("Read Aloud", expanded=False):
-    include_translate_audio = st.checkbox("Include translate", value=False)
-    include_notes_audio = st.checkbox("Include notes", value=False)
-    include_author_audio = st.checkbox("Include author", value=True)
+with st.expander("朗诵", expanded=False):
+    include_translate_audio = st.checkbox("包括译文", value=False)
+    include_notes_audio = st.checkbox("包括注释", value=False)
+    include_author_audio = st.checkbox("包括作者简介", value=True)
     text_to_read = build_read_aloud_text(
         name=name,
         dynasty=dynasty,
@@ -514,7 +514,7 @@ with st.expander("Read Aloud", expanded=False):
     )
     render_read_aloud_controls(text_to_read)
 
-st.markdown("---")
+#st.markdown("---")
 
 if translate_text:
     st.markdown("<div class='section-label'>译文</div>", unsafe_allow_html=True)
@@ -528,7 +528,7 @@ if appreciation_text:
     with st.expander("appreciation (hide/show)", expanded=False):
         st.markdown(f"<div class='section-body'>{appreciation_text}</div>", unsafe_allow_html=True)
 
-st.markdown("<div class='section-label'>作者</div>", unsafe_allow_html=True)
+st.markdown("<div class='section-label'>作者简介</div>", unsafe_allow_html=True)
 if author_intro:
     if author_lifetime:
         st.markdown(f"<div class='section-body'>{author_lifetime}</div>", unsafe_allow_html=True)
