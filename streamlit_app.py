@@ -1323,47 +1323,6 @@ if st.session_state["active_page"] == "Stocks":
 
         st.header(f"{company_name} ({selected_ticker})")
 
-        st.subheader("Key Performance Fundamentals")
-        mc1, mc2, mc3, mc4 = st.columns(4)
-
-        if quote_type == "ETF":
-            exp_ratio = (
-                info.get("annualReportExpenseRatio")
-                or info.get("expenseRatio")
-                or info.get("feesLossesOnExtraction")
-            )
-            if isinstance(exp_ratio, (int, float)):
-                exp_ratio_str = f"{exp_ratio * 100:.2f}%" if exp_ratio < 0.1 else f"{exp_ratio:.2f}%"
-            else:
-                exp_ratio_str = "N/A"
-
-            total_assets = info.get("totalAssets") or info.get("navPrice") or "N/A"
-            assets_str = f"${total_assets:,.0f}" if isinstance(total_assets, (int, float)) else "N/A"
-
-            mc1.metric("Asset Class", "ETF")
-            mc2.metric("Expense Ratio", exp_ratio_str)
-            mc3.metric("Total Assets", assets_str)
-            mc4.metric("Trailing P/E", "N/A (See Holdings)")
-        else:
-            trailing_pe = info.get("trailingPE", "N/A")
-            forward_pe = info.get("forwardPE", "N/A")
-            dividend_yield = info.get("dividendYield", "N/A")
-
-            pe_str = f"{trailing_pe:.2f}" if isinstance(trailing_pe, (int, float)) else "N/A"
-            fpe_str = f"{forward_pe:.2f}" if isinstance(forward_pe, (int, float)) else "N/A"
-            div_str = (
-                f"{dividend_yield * 100:.2f}%"
-                if isinstance(dividend_yield, (int, float))
-                else "N/A"
-            )
-
-            mc1.metric("Asset Class", "Equity / Stock")
-            mc2.metric("Trailing P/E", pe_str)
-            mc3.metric("Forward P/E", fpe_str)
-            mc4.metric("Dividend Yield", div_str)
-
-        st.markdown("---")
-
         with st.spinner("Compiling chart layout..."):
             stock_data = yf.download(selected_ticker, start=start_date, end=end_date)
 
@@ -1403,6 +1362,46 @@ if st.session_state["active_page"] == "Stocks":
                 f"Unable to capture data for '{selected_ticker}'. Verify"
                 " the symbol and date range."
             )
+            
+        st.markdown("---")
+        st.subheader("Key Performance Fundamentals")
+        mc1, mc2, mc3, mc4 = st.columns(4)
+
+        if quote_type == "ETF":
+            exp_ratio = (
+                info.get("annualReportExpenseRatio")
+                or info.get("expenseRatio")
+                or info.get("feesLossesOnExtraction")
+            )
+            if isinstance(exp_ratio, (int, float)):
+                exp_ratio_str = f"{exp_ratio * 100:.2f}%" if exp_ratio < 0.1 else f"{exp_ratio:.2f}%"
+            else:
+                exp_ratio_str = "N/A"
+
+            total_assets = info.get("totalAssets") or info.get("navPrice") or "N/A"
+            assets_str = f"${total_assets:,.0f}" if isinstance(total_assets, (int, float)) else "N/A"
+
+            mc1.metric("Asset Class", "ETF")
+            mc2.metric("Expense Ratio", exp_ratio_str)
+            mc3.metric("Total Assets", assets_str)
+            mc4.metric("Trailing P/E", "N/A (See Holdings)")
+        else:
+            trailing_pe = info.get("trailingPE", "N/A")
+            forward_pe = info.get("forwardPE", "N/A")
+            dividend_yield = info.get("dividendYield", "N/A")
+
+            pe_str = f"{trailing_pe:.2f}" if isinstance(trailing_pe, (int, float)) else "N/A"
+            fpe_str = f"{forward_pe:.2f}" if isinstance(forward_pe, (int, float)) else "N/A"
+            div_str = (
+                f"{dividend_yield * 100:.2f}%"
+                if isinstance(dividend_yield, (int, float))
+                else "N/A"
+            )
+
+            mc1.metric("Asset Class", "Equity / Stock")
+            mc2.metric("Trailing P/E", pe_str)
+            mc3.metric("Forward P/E", fpe_str)
+            mc4.metric("Dividend Yield", div_str)
 
     st.stop()
 
