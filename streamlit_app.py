@@ -1316,8 +1316,12 @@ if st.session_state["active_page"] == "Stocks":
 
     if selected_ticker:
         with st.spinner(f"Loading fundamentals for {selected_ticker}..."):
-            ticker_obj = yf.Ticker(selected_ticker)
-            info = ticker_obj.info
+            try:
+                ticker_obj = yf.Ticker(selected_ticker)
+                info = ticker_obj.info
+            except Exception as e:
+                st.error(f"Failed to load data for '{selected_ticker}': {e}")
+                st.stop()
             company_name = info.get("longName", selected_ticker)
             quote_type = info.get("quoteType", "").upper()
 
