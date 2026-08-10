@@ -1252,18 +1252,22 @@ st.markdown(
 )
 
 def render_top_nav():
-    nav_left, nav_right = st.columns(2)
+    nav_left, nav_center,nav_right = st.columns(3)
     with nav_left:
         if st.button("诗词", use_container_width=True):
             st.session_state["active_page"] = "诗词"
             st.rerun()
-    with nav_right:
+    with nav_center:
         if st.button("AI 博客", use_container_width=True):
-            st.session_state["active_page"] = "Podcasts"
+            st.session_state["active_page"] = "AI 博客"
             st.rerun()
+    with nav_right:
+            if st.button("Stocks", use_container_width=True):
+                st.session_state["active_page"] = "Stocks"
+                st.rerun()
 
-if st.session_state["active_page"] == "Podcasts":
-    st.title("AI Podcasts")
+if st.session_state["active_page"] == "AI 博客":
+    st.title("AI 博客")
     render_top_nav()
     st.markdown("---")
     st.write("Podcast content page")
@@ -1274,6 +1278,132 @@ if st.session_state["active_page"] == "Podcasts":
     st.info("Eps 5: Super Agents in Enterprise AI: Lessons and Future Directions. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
     st.info("Eps 6: Human-as-Humanoid — Teaching Robots with Human Videos. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
     st.info("Eps 7: GPT-Live: OpenAI’s Leap to Human-Like Conversations. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    st.stop()
+
+if st.session_state["active_page"] == "Stocks":
+    import datetime
+    import matplotlib.pyplot as plt
+    import yfinance as yf
+
+    st.title("Stock & ETF Tracker")
+    render_top_nav()
+    st.markdown("---")
+
+    preset_tickers = [
+        "NVDA", "MSFT", "SPY", "SPYM", "QQQ", "QQQM", "SCHG",
+        "GOOGL", "ISRG", "AMT", "MU", "VOO",
+    ]
+
+    ctrl_col1, ctrl_col2, ctrl_col3, ctrl_col4 = st.columns([2, 2, 1, 1])
+
+    with ctrl_col1:
+        use_custom = st.checkbox("Type a custom ticker symbol")
+        if use_custom:
+            ticker_input = st.text_input("Enter Ticker (e.g., AAPL, TSLA):", "AAPL")
+            selected_ticker = ticker_input.strip().upper()
+        else:
+            selected_ticker = st.selectbox("Select a Ticker Symbol:", preset_tickers)
+
+    with ctrl_col2:
+        start_date = st.date_input("Start Date", datetime.date(2025, 1, 1))
+        end_date = st.date_input("End Date", datetime.date.today())
+
+    with ctrl_col3:
+        show_ma = st.checkbox("Moving Average (MA)", value=True)
+
+    with ctrl_col4:
+        ma_period = st.slider("MA Window (Days)", 5, 200, 50)
+
+    if selected_ticker:
+        with st.spinner(f"Loading fundamentals for {selected_ticker}..."):
+            ticker_obj = yf.Ticker(selected_ticker)
+            info = ticker_obj.info
+            company_name = info.get("longName", selected_ticker)
+            quote_type = info.get("quoteType", "").upper()
+
+        st.header(f"{company_name} ({selected_ticker})")
+
+        st.subheader("Key Performance Fundamentals")
+        mc1, mc2, mc3, mc4 = st.columns(4)
+
+        if quote_type == "ETF":
+            exp_ratio = (
+                info.get("annualReportExpenseRatio")
+                or info.get("expenseRatio")
+                or info.get("feesLossesOnExtraction")
+            )
+            if isinstance(exp_ratio, (int, float)):
+                exp_ratio_str = f"{exp_ratio * 100:.2f}%" if exp_ratio < 0.1 else f"{exp_ratio:.2f}%"
+            else:
+                exp_ratio_str = "N/A"
+
+            total_assets = info.get("totalAssets") or info.get("navPrice") or "N/A"
+            assets_str = f"${total_assets:,.0f}" if isinstance(total_assets, (int, float)) else "N/A"
+
+            mc1.metric("Asset Class", "ETF")
+            mc2.metric("Expense Ratio", exp_ratio_str)
+            mc3.metric("Total Assets", assets_str)
+            mc4.metric("Trailing P/E", "N/A (See Holdings)")
+        else:
+            trailing_pe = info.get("trailingPE", "N/A")
+            forward_pe = info.get("forwardPE", "N/A")
+            dividend_yield = info.get("dividendYield", "N/A")
+
+            pe_str = f"{trailing_pe:.2f}" if isinstance(trailing_pe, (int, float)) else "N/A"
+            fpe_str = f"{forward_pe:.2f}" if isinstance(forward_pe, (int, float)) else "N/A"
+            div_str = (
+                f"{dividend_yield * 100:.2f}%"
+                if isinstance(dividend_yield, (int, float))
+                else "N/A"
+            )
+
+            mc1.metric("Asset Class", "Equity / Stock")
+            mc2.metric("Trailing P/E", pe_str)
+            mc3.metric("Forward P/E", fpe_str)
+            mc4.metric("Dividend Yield", div_str)
+
+        st.markdown("---")
+
+        with st.spinner("Compiling chart layout..."):
+            stock_data = yf.download(selected_ticker, start=start_date, end=end_date)
+
+        if not stock_data.empty:
+            st.subheader(f"Price Trend Matrix ({start_date} to {end_date})")
+
+            fig, ax = plt.subplots(figsize=(12, 6))
+            ax.plot(
+                stock_data.index,
+                stock_data["Close"],
+                label="Closing Price",
+                color="#1f77b4",
+                linewidth=2,
+            )
+
+            if show_ma:
+                stock_data["MA"] = stock_data["Close"].rolling(window=ma_period).mean()
+                ax.plot(
+                    stock_data.index,
+                    stock_data["MA"],
+                    label=f"{ma_period}-Day MA",
+                    color="#ff7f0e",
+                    linestyle="--",
+                    linewidth=1.5,
+                )
+
+            ax.set_xlabel("Timeline")
+            ax.set_ylabel("Valuation (USD)")
+            ax.grid(True, linestyle=":", alpha=0.6)
+            ax.legend(loc="upper left")
+            st.pyplot(fig)
+
+            with st.expander("Inspect Raw Data Array"):
+                st.write(stock_data.tail(30))
+        else:
+            st.error(
+                f"Unable to capture data for '{selected_ticker}'. Verify"
+                " the symbol and date range."
+            )
+
     st.stop()
 
 st.title("诗词")
