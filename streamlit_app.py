@@ -1303,7 +1303,7 @@ if st.session_state["active_page"] == "AI 博客":
     
     tab1, tab2, tab3 = st.tabs(["🎵 Music", "📖 Readings", "🧮 Math"])
     
-    with tab1:
+    with tab1: #music
         st.info("2026 K - I love mountains. \n")
         st.markdown(
             """
@@ -1325,9 +1325,15 @@ if st.session_state["active_page"] == "AI 博客":
     with tab2:
         st.info("2026 K - The Day You Begin \n")
 
+        st.markdown("---")
+
         st.info("2026 K - Peanut Butter and Homework Sandwiches \n")
 
+        st.markdown("---")
+
         st.info("2026 K - The RECESS QUEEN by Alexis O'Neill and Laura Huliska-Beith \n")
+
+        st.markdown("---")
 
 
         st.info("2026 K - Chrysanthemum Storytime Read Aloud | Learning to Love Your Name \n")
@@ -1348,6 +1354,8 @@ if st.session_state["active_page"] == "AI 博客":
             unsafe_allow_html=True,
         )
 
+        st.markdown("---")
+
         st.info("2026 K - We are all wonders \n")
         st.markdown(
             """
@@ -1365,7 +1373,8 @@ if st.session_state["active_page"] == "AI 博客":
             """,
             unsafe_allow_html=True,
         )
-        
+
+        st.markdown("---")
 
         st.info("2026 K - (3Y) Letter, Sound, and Picture Identification - Beat the Teach Game \n")
         st.markdown(
