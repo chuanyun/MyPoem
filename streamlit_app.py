@@ -1323,6 +1323,13 @@ if st.session_state["active_page"] == "AI 博客":
         )
     
     with tab2:
+        st.info("2026 K - The Day You Begin \n")
+
+        st.info("2026 K - Peanut Butter and Homework Sandwiches \n")
+
+        st.info("2026 K - The RECESS QUEEN by Alexis O'Neill and Laura Huliska-Beith \n")
+
+
         st.info("2026 K - Chrysanthemum Storytime Read Aloud | Learning to Love Your Name \n")
         st.markdown(
             """
@@ -1330,6 +1337,43 @@ if st.session_state["active_page"] == "AI 博客":
               <iframe
                 src="https://www.youtube.com/embed/dKQQPBSuKuU"
                 title="Chrysanthemum Storytime Read Aloud | Learning to Love Your Name"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.info("2026 K - We are all wonders \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/b2zG_lb31y0?si=fteENgH1Ksa8nCiJ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+
+        st.info("2026 K - (3Y) Letter, Sound, and Picture Identification - Beat the Teach Game \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/ntBi4mtolCM?si=HM8Wosr9DJXTLQib"
+                title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
