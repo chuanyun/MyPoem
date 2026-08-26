@@ -5,6 +5,35 @@ from pathlib import Path
 import streamlit as st
 import streamlit.components.v1 as components
 
+# Access token loaded from .streamlit/secrets.toml
+CORRECT_TOKEN = st.secrets["ACCESS_TOKEN"]
+
+# Initialize session state for tracking access
+if "access_granted" not in st.session_state:
+    st.session_state.access_granted = False
+
+# Callback function to check the token
+def verify_token():
+    if st.session_state.user_token == CORRECT_TOKEN:
+        st.session_state.access_granted = True
+    else:
+        st.error("❌ Invalid token. Please try again.")
+
+# Main app logic
+if not st.session_state.access_granted:
+    # Login Screen
+    st.title("🔒 Access Restricted")
+    st.text_input(
+        "Enter your access token:", 
+        type="password", 
+        key="user_token", 
+        on_change=verify_token
+    )
+    st.button("Unlock App", on_click=verify_token)
+    st.stop()  # Prevents any code below this line from running
+
+# ---- My App --------
+
 st.set_page_config(page_title="诗词", page_icon="🌟", layout="wide")
 
 if "active_page" not in st.session_state:
@@ -1252,7 +1281,8 @@ st.markdown(
 )
 
 def render_top_nav():
-    nav_left, nav_center,nav_right = st.columns(3)
+    #nav_left, nav_center,nav_right = st.columns(3)
+    nav_left, nav_center = st.columns(2)
     with nav_left:
         if st.button("诗词", use_container_width=True):
             st.session_state["active_page"] = "诗词"
@@ -1261,24 +1291,62 @@ def render_top_nav():
         if st.button("AI 博客", use_container_width=True):
             st.session_state["active_page"] = "AI 博客"
             st.rerun()
-    with nav_right:
-            if st.button("Stocks", use_container_width=True):
-                st.session_state["active_page"] = "Stocks"
-                st.rerun()
+    # with nav_right:
+    #         if st.button("Stocks", use_container_width=True):
+    #             st.session_state["active_page"] = "Stocks"
+    #             st.rerun()
 
 if st.session_state["active_page"] == "AI 博客":
     st.title("AI 博客")
     render_top_nav()
     st.markdown("---")
-    st.write("Podcast content page")
-    st.info("Eps 1: LLM Wiki - Building Smarter Knowledge Bases with LLMs. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
-    st.info("Eps 2: Deep Agents – The Ultimate Agent Harness for Long-Horizon Tasks. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
-    st.info("Eps 3: Software Symposium: Exploring Collaboration, Innovation, and Practical Learning. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
-    st.info("Eps 4: Inside AI's Mind: Anthropic’s paper on exploring the Hidden Workspace of Language Models. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
-    st.info("Eps 5: Super Agents in Enterprise AI: Lessons and Future Directions. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
-    st.info("Eps 6: Human-as-Humanoid — Teaching Robots with Human Videos. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
-    st.info("Eps 7: GPT-Live: OpenAI’s Leap to Human-Like Conversations. \n [Listen here](https://www.youtube.com/watch?v=0g1k5J8X9xA)")
+    
+    tab1, tab2, tab3 = st.tabs(["🎵 Music", "📖 Readings", "🧮 Math"])
+    
+    with tab1:
+        st.info("2026 K - I love mountains. \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/mmjbF3A30eQ?si=m7-_bxUurWzIluq2"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    with tab2:
+        st.info("2026 K - Chrysanthemum Storytime Read Aloud | Learning to Love Your Name \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/dKQQPBSuKuU"
+                title="Chrysanthemum Storytime Read Aloud | Learning to Love Your Name"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    with tab3:
+        st.write("Coming soon...")
+
     st.stop()
+
+
 
 if st.session_state["active_page"] == "Stocks":
     import datetime
