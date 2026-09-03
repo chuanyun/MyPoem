@@ -1323,6 +1323,140 @@ if st.session_state["active_page"] == "AI 博客":
         )
     
     with tab2:
+    
+        st.info("2026 Sep K - In the Middle of Fall | Kevin Henkes\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/TimVqce62Bw"
+        title="In the Middle of Fall | Kevin Henkes"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+        st.markdown("---")
+        st.info("2026 K - Hello, Fall! | Deborah Diesen\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/jkLK2a3Ca9Q"
+        title="Hello, Fall! | Deborah Diesen"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/W8El2WrvgqE"
+        title="Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+        st.info("2026 K - A Tree for All Seasons | Robin Bernard\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/9X-Pm9jT6uA"
+        title="A Tree for All Seasons | Robin Bernard"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - From Seed to Pumpkin | Wendy Pfeffer\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/I0poArP3YCg"
+        title="From Seed to Pumpkin | Wendy Pfeffer"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - Curious George: Curious About Fall | H. A. Rey\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/a6FPYkXVj0w"
+        title="Curious George: Curious About Fall | H. A. Rey"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+
+        st.info("2026 K - Pete the Cat: Falling for Autumn | Kimberly & James Dean\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/mAF5iF-_JdM"
+        title="Pete the Cat: Falling for Autumn | Kimberly & James Dean"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
         st.info("2026 K - The Day You Begin \n")
 
         st.markdown("---")
