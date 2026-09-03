@@ -53,6 +53,155 @@ if st.session_state["active_page"] == "上学啦":
             """,
             unsafe_allow_html=True,
         )
+
+        st.markdown("---")
+        st.info("2026 K - Sesame Street: Will.i.am Sings \"What I Am\"\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/cyVzjoj96vs"
+        title="Sesame Street: Will.i.am Sings What I Am"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - Squish the Fish | A Cosmic Kids Yoga Adventure!\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/LhYtcadR9nw"
+        title="Squish the Fish | A Cosmic Kids Yoga Adventure!"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - Koo Koo Kanga Roo - Birthday Hooray\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/ovoCPdaO4gE"
+        title="Koo Koo Kanga Roo - Birthday Hooray"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - Koo Koo Kanga Roo - Glitter (Dance-A-Long)\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/h7UGK1djTos"
+        title="Koo Koo Kanga Roo - Glitter (Dance-A-Long)"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - Koo Koo Kanga Roo - Rollercoaster\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/4jxqSHOad18"
+        title="Koo Koo Kanga Roo - Rollercoaster"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - Koo Koo Kanga Roo - Pop See Ko\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/OPLWyZMRNn0"
+        title="Koo Koo Kanga Roo - Pop See Ko"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - Koo Koo Kanga Roo - Superheroes Unite (Dance-A-Long)\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/ok7V1pWtRzs"
+        title="Koo Koo Kanga Roo - Superheroes Unite (Dance-A-Long)"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+
+    
     
     with tab2: #readings
     
