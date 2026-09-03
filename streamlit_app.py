@@ -246,6 +246,68 @@ if st.session_state["active_page"] == "上学啦":
         )
     
     with tab3: #Literacy
+
+        st.info("2026 K - The Letter A Song - ABCmouse.com\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/beT_KcblaBI"
+        title="The Letter A Song - ABCmouse.com"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        st.markdown("---")
+
+        st.info("2026 K - Letter A | Sing and Learn the Letters of the Alphabet | Learn the Letter A | Jack Hartmann\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/a97wruxm3go"
+        title="Letter A | Sing and Learn the Letters of the Alphabet | Learn the Letter A | Jack Hartmann"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+        
+        
+        st.info("2026 K - The Letter M Song - ABCmouse.com\n")
+        st.markdown(
+        """
+        <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe
+        src="https://www.youtube.com/embed/6QUSDu2JIY0"
+        title="The Letter M Song - ABCmouse.com"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+        ></iframe>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
+        st.markdown("---")
+            
+
         st.info("2026 K - (3Y) Letter, Sound, and Picture Identification - Beat the Teach Game \n")
         st.markdown(
             """
