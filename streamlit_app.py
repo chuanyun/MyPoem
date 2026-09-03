@@ -244,9 +244,8 @@ if st.session_state["active_page"] == "上学啦":
             """,
             unsafe_allow_html=True,
         )
-
-        st.markdown("---")
-
+    
+    with tab3: #Literacy
         st.info("2026 K - (3Y) Letter, Sound, and Picture Identification - Beat the Teach Game \n")
         st.markdown(
             """
@@ -264,9 +263,7 @@ if st.session_state["active_page"] == "上学啦":
             """,
             unsafe_allow_html=True,
         )
-    
-    with tab3: #Literacy
-        st.write("Coming soon...")
+        st.markdown("---")
 
     with tab4: #math
         st.write("Coming soon...")
