@@ -12,6 +12,263 @@ st.set_page_config(page_title="诗词", page_icon="🌟", layout="wide")
 if "active_page" not in st.session_state:
     st.session_state["active_page"] = "诗词"
 
+def render_top_nav():
+    #nav_left, nav_center,nav_right = st.columns(3)
+    nav_left, nav_center = st.columns(2)
+    with nav_left:
+        if st.button("诗词", use_container_width=True):
+            st.session_state["active_page"] = "诗词"
+            st.rerun()
+    with nav_center:
+        if st.button("上学啦", use_container_width=True):
+            st.session_state["active_page"] = "上学啦"
+            st.rerun()
+    # with nav_right:
+    #         if st.button("Stocks", use_container_width=True):
+    #             st.session_state["active_page"] = "Stocks"
+    #             st.rerun()
+
+if st.session_state["active_page"] == "上学啦":
+    st.title("上学啦")
+    render_top_nav()
+    st.markdown("---")
+    
+    tab1, tab2, tab3 = st.tabs(["🎵 Music", "📖 Readings", " Literacy",  "🧮 Math"])
+    
+    with tab1: #music
+        st.info("2026 K - I love mountains. \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/mmjbF3A30eQ?si=m7-_bxUurWzIluq2"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    with tab2: #readings
+    
+        st.info("2026 Sep K - In the Middle of Fall | Kevin Henkes\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/luYR13s_Mvg"
+        title="In the Middle of Fall - Read Aloud Children's Book"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+        st.markdown("---")
+        st.info("2026 K - Hello, Fall! | Deborah Diesen\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/jkLK2a3Ca9Q"
+        title="Hello, Fall! | Deborah Diesen"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/W8El2WrvgqE"
+        title="Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+        st.info("2026 K - A Tree for All Seasons | Robin Bernard\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/9X-Pm9jT6uA"
+        title="A Tree for All Seasons | Robin Bernard"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - From Seed to Pumpkin | Wendy Pfeffer\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/I0poArP3YCg"
+        title="From Seed to Pumpkin | Wendy Pfeffer"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - Curious George: Curious About Fall | H. A. Rey\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/a6FPYkXVj0w"
+        title="Curious George: Curious About Fall | H. A. Rey"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+
+        st.info("2026 K - Pete the Cat: Falling for Autumn | Kimberly & James Dean\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/mAF5iF-_JdM"
+        title="Pete the Cat: Falling for Autumn | Kimberly & James Dean"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+        st.info("2026 K - The Day You Begin \n")
+
+        st.markdown("---")
+
+        st.info("2026 K - Peanut Butter and Homework Sandwiches \n")
+
+        st.markdown("---")
+
+        st.info("2026 K - The RECESS QUEEN by Alexis O'Neill and Laura Huliska-Beith \n")
+
+        st.markdown("---")
+
+
+        st.info("2026 K - Chrysanthemum Storytime Read Aloud | Learning to Love Your Name \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/dKQQPBSuKuU"
+                title="Chrysanthemum Storytime Read Aloud | Learning to Love Your Name"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("---")
+
+        st.info("2026 K - We are all wonders \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/b2zG_lb31y0?si=fteENgH1Ksa8nCiJ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("---")
+
+        st.info("2026 K - (3Y) Letter, Sound, and Picture Identification - Beat the Teach Game \n")
+        st.markdown(
+            """
+            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+              <iframe
+                src="https://www.youtube.com/embed/ntBi4mtolCM?si=HM8Wosr9DJXTLQib"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+              ></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    with tab3: #Literacy
+        st.write("Coming soon...")
+
+    with tab4: #math
+        st.write("Coming soon...")
+
+    st.stop()
+
+
 DATA_PATH = Path(__file__).resolve().parent / "peoms1_tang_song.json"
 AUTHORS_PATH = Path(__file__).resolve().parent / "peoms_authors_tang_song.json"
 CIPAI_DESC_PATH = Path(__file__).resolve().parent / "peoms_cipai_desc.json"
@@ -1252,263 +1509,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-def render_top_nav():
-    #nav_left, nav_center,nav_right = st.columns(3)
-    nav_left, nav_center = st.columns(2)
-    with nav_left:
-        if st.button("诗词", use_container_width=True):
-            st.session_state["active_page"] = "诗词"
-            st.rerun()
-    with nav_center:
-        if st.button("上学啦", use_container_width=True):
-            st.session_state["active_page"] = "上学啦"
-            st.rerun()
-    # with nav_right:
-    #         if st.button("Stocks", use_container_width=True):
-    #             st.session_state["active_page"] = "Stocks"
-    #             st.rerun()
-
-if st.session_state["active_page"] == "上学啦":
-    st.title("上学啦")
-    render_top_nav()
-    st.markdown("---")
-    
-    tab1, tab2, tab3 = st.tabs(["🎵 Music", "📖 Readings", " Literacy",  "🧮 Math"])
-    
-    with tab1: #music
-        st.info("2026 K - I love mountains. \n")
-        st.markdown(
-            """
-            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-              <iframe
-                src="https://www.youtube.com/embed/mmjbF3A30eQ?si=m7-_bxUurWzIluq2"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-              ></iframe>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    
-    with tab2: #readings
-    
-        st.info("2026 Sep K - In the Middle of Fall | Kevin Henkes\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/luYR13s_Mvg"
-        title="In the Middle of Fall - Read Aloud Children's Book"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-        st.markdown("---")
-        st.info("2026 K - Hello, Fall! | Deborah Diesen\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/jkLK2a3Ca9Q"
-        title="Hello, Fall! | Deborah Diesen"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-        st.info("2026 K - Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/W8El2WrvgqE"
-        title="Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-        st.info("2026 K - A Tree for All Seasons | Robin Bernard\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/9X-Pm9jT6uA"
-        title="A Tree for All Seasons | Robin Bernard"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-        st.info("2026 K - From Seed to Pumpkin | Wendy Pfeffer\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/I0poArP3YCg"
-        title="From Seed to Pumpkin | Wendy Pfeffer"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-        st.info("2026 K - Curious George: Curious About Fall | H. A. Rey\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/a6FPYkXVj0w"
-        title="Curious George: Curious About Fall | H. A. Rey"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-
-        st.info("2026 K - Pete the Cat: Falling for Autumn | Kimberly & James Dean\n")
-        st.markdown(
-    """
-    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-      <iframe
-        src="https://www.youtube.com/embed/mAF5iF-_JdM"
-        title="Pete the Cat: Falling for Autumn | Kimberly & James Dean"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-      ></iframe>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-
-        st.info("2026 K - The Day You Begin \n")
-
-        st.markdown("---")
-
-        st.info("2026 K - Peanut Butter and Homework Sandwiches \n")
-
-        st.markdown("---")
-
-        st.info("2026 K - The RECESS QUEEN by Alexis O'Neill and Laura Huliska-Beith \n")
-
-        st.markdown("---")
-
-
-        st.info("2026 K - Chrysanthemum Storytime Read Aloud | Learning to Love Your Name \n")
-        st.markdown(
-            """
-            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-              <iframe
-                src="https://www.youtube.com/embed/dKQQPBSuKuU"
-                title="Chrysanthemum Storytime Read Aloud | Learning to Love Your Name"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-              ></iframe>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-        st.markdown("---")
-
-        st.info("2026 K - We are all wonders \n")
-        st.markdown(
-            """
-            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-              <iframe
-                src="https://www.youtube.com/embed/b2zG_lb31y0?si=fteENgH1Ksa8nCiJ"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-              ></iframe>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-        st.markdown("---")
-
-        st.info("2026 K - (3Y) Letter, Sound, and Picture Identification - Beat the Teach Game \n")
-        st.markdown(
-            """
-            <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
-              <iframe
-                src="https://www.youtube.com/embed/ntBi4mtolCM?si=HM8Wosr9DJXTLQib"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
-              ></iframe>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    
-    with tab3: #Literacy
-        st.write("Coming soon...")
-
-    with tab4: #math
-        st.write("Coming soon...")
-
-    st.stop()
-
 
 st.title("诗词")
 render_top_nav()
