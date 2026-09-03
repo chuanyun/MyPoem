@@ -1329,8 +1329,8 @@ if st.session_state["active_page"] == "AI 博客":
     """
     <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
       <iframe
-        src="https://www.youtube.com/embed/TimVqce62Bw"
-        title="In the Middle of Fall | Kevin Henkes"
+        src="https://www.youtube.com/embed/luYR13s_Mvg"
+        title="In the Middle of Fall - Read Aloud Children's Book"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
