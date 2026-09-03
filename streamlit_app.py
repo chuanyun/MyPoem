@@ -7,10 +7,10 @@ import streamlit.components.v1 as components
 
 # ---- My App --------
 
-st.set_page_config(page_title="诗词", page_icon="🌟", layout="wide")
+st.set_page_config(page_title="小小学贯中西", page_icon="🌟", layout="wide")
 
 if "active_page" not in st.session_state:
-    st.session_state["active_page"] = "诗词"
+    st.session_state["active_page"] = "上学啦"
 
 def render_top_nav():
     #nav_left, nav_center,nav_right = st.columns(3)
@@ -94,6 +94,7 @@ if st.session_state["active_page"] == "上学啦":
 )
 
 
+        st.markdown("---")
         st.info("2026 K - Splat the Cat and the Pumpkin-Picking Plan | Rob Scotton\n")
         st.markdown(
     """
@@ -112,6 +113,7 @@ if st.session_state["active_page"] == "上学啦":
     unsafe_allow_html=True,
 )
 
+        st.markdown("---")
         st.info("2026 K - A Tree for All Seasons | Robin Bernard\n")
         st.markdown(
     """
@@ -131,6 +133,7 @@ if st.session_state["active_page"] == "上学啦":
 )
 
 
+        st.markdown("---")
         st.info("2026 K - From Seed to Pumpkin | Wendy Pfeffer\n")
         st.markdown(
     """
@@ -150,6 +153,7 @@ if st.session_state["active_page"] == "上学啦":
 )
 
 
+        st.markdown("---")
         st.info("2026 K - Curious George: Curious About Fall | H. A. Rey\n")
         st.markdown(
     """
@@ -170,6 +174,7 @@ if st.session_state["active_page"] == "上学啦":
 
 
 
+        st.markdown("---")
         st.info("2026 K - Pete the Cat: Falling for Autumn | Kimberly & James Dean\n")
         st.markdown(
     """
