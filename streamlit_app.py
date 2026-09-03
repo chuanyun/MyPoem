@@ -4,7 +4,7 @@ from pathlib import Path
 
 import streamlit as st
 import streamlit.components.v1 as components
-
+"""
 # Access token loaded from .streamlit/secrets.toml
 CORRECT_TOKEN = st.secrets["ACCESS_TOKEN"]
 
@@ -31,7 +31,7 @@ if not st.session_state.access_granted:
     )
     st.button("Unlock App", on_click=verify_token)
     st.stop()  # Prevents any code below this line from running
-
+"""
 # ---- My App --------
 
 st.set_page_config(page_title="诗词", page_icon="🌟", layout="wide")
