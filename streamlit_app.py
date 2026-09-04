@@ -54,10 +54,24 @@ if st.session_state["active_page"] == "上学啦":
             unsafe_allow_html=True,
         )
 
-        st.link_button(
-    "▶️ Watch in YouTube Kids",
-    "https://www.youtubekids.com/watch?v=GHj-C7TfgkE"
+        st.info("2026 K - I Love The Mountains | + More Kids Songs | Super Simple Songs\n")
+        st.markdown(
+    """
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;">
+      <iframe
+        src="https://www.youtube.com/embed/GHj-C7TfgkE"
+        title="I Love The Mountains | + More Kids Songs | Super Simple Songs"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;"
+      ></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
+
 
         st.markdown("---")
         st.info("2026 K - Sesame Street: Will.i.am Sings \"What I Am\"\n")
