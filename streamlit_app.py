@@ -33,7 +33,7 @@ if st.session_state["active_page"] == "上学啦":
     render_top_nav()
     st.markdown("---")
     
-    tab1, tab2, tab3, tab4 = st.tabs(["🎵 Music", "📖 Readings", " Literacy",  "🧮 Math"])
+    tab1, tab2, tab3, tab4 = st.tabs(["🎵 Music", "📚 Readings", "🔤 Literacy",  "🧮 Math"])
     
     with tab1: #music
         st.info("2026 K - I love mountains. \n")
