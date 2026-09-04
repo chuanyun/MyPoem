@@ -54,6 +54,11 @@ if st.session_state["active_page"] == "上学啦":
             unsafe_allow_html=True,
         )
 
+        st.link_button(
+    "▶️ Watch in YouTube Kids",
+    "https://www.youtubekids.com/watch?v=GHj-C7TfgkE"
+)
+
         st.markdown("---")
         st.info("2026 K - Sesame Street: Will.i.am Sings \"What I Am\"\n")
         st.markdown(
